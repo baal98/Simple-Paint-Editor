@@ -6,19 +6,59 @@
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <InkCanvas Name="inkCanvas" Background="White" Margin="0,40,0,0"/>
+    <DockPanel LastChildFill="True">
 
-        <!-- Контроли за управление -->
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+        
+ <!--Вертикални контроли (отляво)--> 
+
+        <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Width="200">
+            <Button Content="Кръгла Четка" Click="RoundBrush"/>
+            <Button Content="Правоъгълна Четка" Click="RectangleBrush"/>
             <Button Content="Черен" Click="ChangeInkColor" Background="Black" Foreground="White" Tag="Black"/>
             <Button Content="Червен" Click="ChangeInkColor" Background="Red" Foreground="White" Tag="Red"/>
             <Button Content="Син" Click="ChangeInkColor" Background="Blue" Foreground="White" Tag="Blue"/>
+            <Button Content="Промени Цвета" Click="ChangeSelectedStrokesColor"/>
+            <ComboBox Name="colorPicker" Width="100">
+                <ComboBoxItem Content="Червен" Tag="Red"/>
+                <ComboBoxItem Content="Зелен" Tag="Green"/>
+                <ComboBoxItem Content="Син" Tag="Blue"/>
+                -->
+                <!-- Добавяне на други цветове по ваш избор -->
+            </ComboBox>
+            
+            
             <Slider Name="sliderThickness" Minimum="1" Maximum="10" Value="1" Width="100" Margin="10,0,0,0"/>
+            <Button Content="Върти" Click="RotateButton_Click"/>
             <Button Content="Рисуване" Click="DrawingMode"/>
             <Button Content="Селектиране" Click="SelectMode"/>
             <Button Content="Изтриване" Click="EraseMode"/>
             <Button Content="Запазване" Click="SaveInk"/>
         </StackPanel>
-    </Grid>
+
+        
+ <!--Хоризонтални контроли (отгоре)--> 
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBox x:Name="textToAdd" Width="100"/>
+            <Button Content="Добави Текст" Click="AddTextButton_Click"/>
+            <Button Content="Редактирай Текст" Click="EditSelectedTextButton_Click"/>
+            <TextBlock Text="Размер на шрифта"/>
+            <Slider x:Name="textSizeSlider" Minimum="8" Maximum="40" Value="12" Width="100" Margin="10,0,0,0"/>
+            <ComboBox x:Name="textColorPicker" Width="100">
+                <ComboBoxItem Content="Черен" Tag="Black"/>
+                <ComboBoxItem Content="Червен" Tag="Red"/>
+                <ComboBoxItem Content="Зелен" Tag="Green"/>
+                <ComboBoxItem Content="Син" Tag="Blue"/>
+                
+ <!--Добавете други цветове по ваш избор--> 
+
+            </ComboBox>
+            <Button Content="Промени Цвета" Click="ChangeSelectedStrokesColor"/>
+        </StackPanel>
+
+        
+ <!--Основно рисувателно пространство--> 
+
+        <local:RotatableInkCanvas x:Name="rotatableInkCanvas" Background="White"/>
+    </DockPanel>
 </Window>
