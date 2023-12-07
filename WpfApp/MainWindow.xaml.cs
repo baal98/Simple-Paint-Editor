@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -156,6 +157,43 @@ namespace WpfApp
                 SelectedTextBlock.FontSize = textSizeSlider.Value;
             }
         }
+
+        private void InsertImage()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*",
+                Title = "Open Image File"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Image image = new Image
+                {
+                    Source = new BitmapImage(new Uri(openFileDialog.FileName)),
+                    Width = 100, // Избираме подходяща начална ширина
+                    Height = 100, // Избираме подходяща начална височина
+                    Stretch = Stretch.Uniform
+                };
+
+                InkCanvas.SetLeft(image, 0); // Начална позиция X
+                InkCanvas.SetTop(image, 0); // Начална позиция Y
+
+                rotatableInkCanvas.Children.Add(image);
+            }
+        }
+
+        private void InsertImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            InsertImage();
+        }
+
+        private void DeleteImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            var inkCanvas = rotatableInkCanvas as ManipulatableInkCanvas;
+            inkCanvas?.DeleteSelectedElement();
+        }
+
 
     }
 }
