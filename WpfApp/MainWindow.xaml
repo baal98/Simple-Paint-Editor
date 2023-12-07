@@ -1,0 +1,24 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <InkCanvas Name="inkCanvas" Background="White" Margin="0,40,0,0"/>
+
+        <!-- Контроли за управление -->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <Button Content="Черен" Click="ChangeInkColor" Background="Black" Foreground="White" Tag="Black"/>
+            <Button Content="Червен" Click="ChangeInkColor" Background="Red" Foreground="White" Tag="Red"/>
+            <Button Content="Син" Click="ChangeInkColor" Background="Blue" Foreground="White" Tag="Blue"/>
+            <Slider Name="sliderThickness" Minimum="1" Maximum="10" Value="1" Width="100" Margin="10,0,0,0"/>
+            <Button Content="Рисуване" Click="DrawingMode"/>
+            <Button Content="Селектиране" Click="SelectMode"/>
+            <Button Content="Изтриване" Click="EraseMode"/>
+            <Button Content="Запазване" Click="SaveInk"/>
+        </StackPanel>
+    </Grid>
+</Window>
